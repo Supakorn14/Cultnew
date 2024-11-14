@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genetics Calculator</title>
+    <style>
+        /* กำหนดสไตล์ทั่วไป */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        
+        /* ส่วนหัว */
+        header {
+            background-color: #e0b3ff;
+            color: #333;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        header h1 {
+            margin: 0;
+        }
+        
+        /* เมนูนำทาง */
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #4CAF50;
+        }
+        
+        nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px;
+        }
+        
+        nav a:hover {
+            background-color: #45a049;
+            border-radius: 5px;
+        }
+        
+        /* การจัดวางเนื้อหา */
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        label, select, button {
+            margin: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #results {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .section {
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>KHANUWITTAYA SCHOOL</h1>
+</header>
+
+<nav>
+    <a href="#concept">Concept</a>
+    <a href="#about">About Us</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<div class="container">
+    <section id="calculator" class="section">
+        <h2>Genetics Calculator</h2>
+        <p>เครื่องคิดเลขสำหรับคำนวณในทางชีววิทยา และข้อมูลเชิงพันธุกรรม</p>
+        
+        <label for="parent1">Parent 1 Allele:</label>
+        <select id="parent1">
+            <option value="A">A</option>
+            <option value="a">a</option>
+        </select>
+
+        <label for="parent2">Parent 1 Allele:</label>
+        <select id="parent2">
+            <option value="A">A</option>
+            <option value="a">a</option>
+        </select>
+
+        <br><br>
+
+        <label for="parent3">Parent 2 Allele:</label>
+        <select id="parent3">
+            <option value="A">A</option>
+            <option value="a">a</option>
+        </select>
+
+        <label for="parent4">Parent 2 Allele:</label>
+        <select id="parent4">
+            <option value="A">A</option>
+            <option value="a">a</option>
+        </select>
+
+        <br><br>
+
+        <button onclick="calculateGenetics()">Calculate</button>
+
+        <h3>Results:</h3>
+        <p id="results"></p>
+    </section>
+
+    <section id="about" class="section">
+        <h2>About Us</h2>
+        <p>พวกเราสร้างเว็บไซต์นี้ขึ้นมาเพื่ออำนวยความสะดวกในการคำนวณพันธุศาสตร์ เราหวังว่าจะช่วยได้ไม่มากก็น้อย</p>
+    </section>
+
+    <section id="concept" class="section">
+        <h2>Concept</h2>
+        <p>กฎข้อที่ 1 "กฎแห่งการแยกตัว" และ กฎข้อที่ 2 "กฎแห่งการรวมกลุ่มอย่างอิสระ" เป็นแนวคิดที่สำคัญในพันธุศาสตร์ที่ช่วยอธิบายการถ่ายทอดลักษณะทางพันธุกรรม</p>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Contact Us</h2>
+        <p>หากพบข้อบกพร่องหรือปัญหาในการใช้งานเว็บไซต์ สามารถแจ้งได้ทางช่องทางนี้:</p>
+        <p>Email: <a href="mailto:18080@kanu.ac.th">18080@kanu.ac.th</a></p>
+    </section>
+</div>
+
+<script>
+function calculateGenetics() {
+    let p1 = document.getElementById("parent1").value;
+    let p2 = document.getElementById("parent2").value;
+    let p3 = document.getElementById("parent3").value;
+    let p4 = document.getElementById("parent4").value;
+
+    let possibleCombinations = [p1 + p3, p1 + p4, p2 + p3, p2 + p4];
+
+    let counts = { "AA": 0, "Aa": 0, "aA": 0, "aa": 0 };
+    possibleCombinations.forEach(combination => { counts[combination]++; });
+
+    let total = possibleCombinations.length;
+    let AA_percent = (counts["AA"] / total) * 100;
+    let Aa_percent = ((counts["Aa"] + counts["aA"]) / total) * 100;
+    let aa_percent = (counts["aa"] / total) * 100;
+
+    document.getElementById("results").innerHTML =
+        `AA: ${AA_percent.toFixed(2)}%<br>` +
+        `Aa: ${Aa_percent.toFixed(2)}%<br>` +
+        `aa: ${aa_percent.toFixed(2)}%`;
+}
+</script>
+
+</body>
+</html>
