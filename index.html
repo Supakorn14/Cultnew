@@ -3,147 +3,175 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Website</title>
+    <title>Genetics Calculator</title>
     <style>
-        /* สไตล์พื้นฐาน */
-        body, html {
-            margin: 0;
-            padding: 0;
+        body {
             font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-        }
-
-        /* ส่วนหัว */
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0;
-        }
-
-        /* เมนูนำทาง */
-        nav {
             display: flex;
-            justify-content: center;
-            background-color: #333;
+            flex-direction: column;
+            align-items: center;
+            background-image: url('https://drive.google.com/file/d/1y4jqXQaSovvw7A6yzYS-N2FPimfmbtsH/view?usp=drivesdk'); /* เปลี่ยน URL เป็น URL ของภาพจาก Google Drive */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 20px;
+            height: 100vh;
+            color: white; /* สีตัวอักษรให้เหมาะกับพื้นหลัง */
         }
 
-        nav a {
-            margin: 0 15px;
+        h2 {
+            color: #4CAF50;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 10px 20px;
+            z-index: 10;
+        }
+
+        .navbar a {
             color: white;
             text-decoration: none;
+            padding: 10px 20px;
+            margin-right: 20px;
             font-weight: bold;
-            padding: 10px;
-        }
-
-        nav a:hover {
-            background-color: #555;
+            background-color: #4CAF50;
             border-radius: 5px;
         }
 
-        /* พื้นที่ของแต่ละหน้า */
-        .page {
-            display: none; /* ซ่อนทุกหน้าก่อน */
-            padding: 20px;
-            text-align: center;
+        .navbar a:hover {
+            background-color: #45a049;
         }
 
-        /* แสดงเฉพาะหน้าที่เลือก */
-        .active {
-            display: block;
+        label, select, button {
+            margin: 5px;
+            font-size: 1.2rem;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1.1rem;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #results {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .back-btn:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>KHANUWITTAYA SCHOOL</h1>
-</header>
-
-<!-- เมนูนำทาง -->
-<nav>
-    <a href="#home" onclick="showPage('home')">Home</a>
-    <a href="#about" onclick="showPage('about')">About Us</a>
-    <a href="#calculator" onclick="showPage('calculator')">Calculator</a>
-</nav>
-
-<!-- หน้าหลัก -->
-<div id="home" class="page active">
-    <h2>Welcome to Our Website!</h2>
-    <p>กดปุ่ม "About Us" เพื่อดูข้อมูลเพิ่มเติม หรือ "Calculator" เพื่อใช้เครื่องคิดเลข</p>
+<!-- แถบเมนูด้านบน -->
+<div class="navbar">
+    <a href="YOUR_PAGE_URL_1" target="_blank">หน้าหลัก</a>
+    <a href="YOUR_PAGE_URL_2" target="_blank">คำแนะนำ</a>
+    <a href="YOUR_PAGE_URL_3" target="_blank">ติดต่อ</a>
 </div>
 
-<!-- หน้า About Us -->
-<div id="about" class="page">
-    <h2>About Us</h2>
-    <p>ข้อมูลเกี่ยวกับเรา และข้อมูลเพิ่มเติมจาก Canva</p>
-    <button onclick="openCanvaImage()">ดูภาพจาก Canva</button>
-</div>
+<!-- ปุ่มย้อนกลับ -->
+<button class="back-btn" onclick="window.history.back();">ย้อนกลับ</button>
 
-<!-- หน้า Calculator -->
-<div id="calculator" class="page">
-    <h2>Genetics Calculator</h2>
-    <p>เครื่องคิดเลขสำหรับคำนวณในทางชีววิทยา</p>
-    
-    <label for="parent1">Parent 1 Allele:</label>
-    <select id="parent1">
-        <option value="A">A</option>
-        <option value="a">a</option>
-    </select>
+<h2>Genetics-Calculator</h2>
 
-    <label for="parent2">Parent 2 Allele:</label>
-    <select id="parent2">
-        <option value="A">A</option>
-        <option value="a">a</option>
-    </select>
+<!-- ฟอร์มสำหรับใส่ข้อมูลอัลลีลของพ่อและแม่ -->
+<label for="parent1">Parent 1 Allele:</label>
+<select id="parent1">
+    <option value="A">A</option>
+    <option value="a">a</option>
+</select>
 
-    <br><br>
+<label for="parent2">Parent 1 Allele:</label>
+<select id="parent2">
+    <option value="A">A</option>
+    <option value="a">a</option>
+</select>
 
-    <button onclick="calculateGenetics()">Calculate</button>
+<br><br>
 
-    <h3>Results:</h3>
-    <p id="results"></p>
-</div>
+<label for="parent3">Parent 2 Allele:</label>
+<select id="parent3">
+    <option value="A">A</option>
+    <option value="a">a</option>
+</select>
+
+<label for="parent4">Parent 2 Allele:</label>
+<select id="parent4">
+    <option value="A">A</option>
+    <option value="a">a</option>
+</select>
+
+<br><br>
+
+<button onclick="calculateGenetics()">Calculate</button>
+
+<h3>Results:</h3>
+<p id="results"></p>
 
 <script>
-    // ฟังก์ชันเพื่อแสดงหน้าแต่ละหน้า
-    function showPage(pageId) {
-        const pages = document.querySelectorAll('.page');
-        pages.forEach(page => {
-            page.classList.remove('active');
-        });
-        document.getElementById(pageId).classList.add('active');
-    }
+function calculateGenetics() {
+    // รับค่าจากฟอร์ม
+    let p1 = document.getElementById("parent1").value;
+    let p2 = document.getElementById("parent2").value;
+    let p3 = document.getElementById("parent3").value;
+    let p4 = document.getElementById("parent4").value;
 
-    // ฟังก์ชันเปิดหน้าต่างใหม่ไปยังรูปภาพจาก Canva
-    function openCanvaImage() {
-        const canvaLink = 'https://drive.google.com/file/d/1sl0tKH7YQ_8fCiIcVFndyAJFnydMC2oB/view?usp=drivesdk'; // เปลี่ยนลิงก์นี้เป็นลิงก์ Canva ของคุณ
-        window.open(canvaLink, '_blank'); // เปิดลิงก์ในแท็บใหม่
-    }
+    // กำหนดคู่ที่เป็นไปได้
+    let possibleCombinations = [p1 + p3, p1 + p4, p2 + p3, p2 + p4];
 
-    // ฟังก์ชันคำนวณพันธุกรรม
-    function calculateGenetics() {
-        let p1 = document.getElementById("parent1").value;
-        let p2 = document.getElementById("parent2").value;
+    // นับจำนวนของ AA, Aa, และ aa
+    let counts = {
+        "AA": 0,
+        "Aa": 0,
+        "aA": 0,
+        "aa": 0
+    };
 
-        let combinations = [p1 + p2];
-        
-        let counts = { "AA": 0, "Aa": 0, "aa": 0 };
-        combinations.forEach(combination => { counts[combination] = (counts[combination] || 0) + 1; });
+    possibleCombinations.forEach(combination => {
+        counts[combination]++;
+    });
 
-        let AA_percent = (counts["AA"] || 0) * 100;
-        let Aa_percent = (counts["Aa"] || 0) * 100;
-        let aa_percent = (counts["aa"] || 0) * 100;
+    // คำนวณเปอร์เซ็นต์ของแต่ละลักษณะ
+    let total = possibleCombinations.length;
+    let AA_percent = (counts["AA"] / total) * 100;
+    let Aa_percent = ((counts["Aa"] + counts["aA"]) / total) * 100;
+    let aa_percent = (counts["aa"] / total) * 100;
 
-        document.getElementById("results").innerHTML =
-            `AA: ${AA_percent}%<br>` +
-            `Aa: ${Aa_percent}%<br>` +
-            `aa: ${aa_percent}%`;
-    }
+    // แสดงผลลัพธ์
+    document.getElementById("results").innerHTML =
+        `AA: ${AA_percent.toFixed(2)}%<br>` +
+        `Aa: ${Aa_percent.toFixed(2)}%<br>` +
+        `aa: ${aa_percent.toFixed(2)}%`;
+}
 </script>
 
 </body>
