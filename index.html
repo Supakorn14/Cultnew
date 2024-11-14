@@ -3,35 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genetics Calculator</title>
+    <title>Interactive Website</title>
     <style>
-        /* กำหนดสไตล์ทั่วไป */
-        body {
-            font-family: Arial, sans-serif;
+        /* สไตล์พื้นฐาน */
+        body, html {
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
             background-color: #f5f5f5;
         }
-        
+
         /* ส่วนหัว */
         header {
-            background-color: #e0b3ff;
-            color: #333;
+            background-color: #4CAF50;
+            color: white;
             padding: 15px;
             text-align: center;
         }
-        
+
         header h1 {
             margin: 0;
         }
-        
+
         /* เมนูนำทาง */
         nav {
             display: flex;
             justify-content: center;
-            background-color: #4CAF50;
+            background-color: #333;
         }
-        
+
         nav a {
             margin: 0 15px;
             color: white;
@@ -39,51 +39,22 @@
             font-weight: bold;
             padding: 10px;
         }
-        
+
         nav a:hover {
-            background-color: #45a049;
+            background-color: #555;
             border-radius: 5px;
         }
-        
-        /* การจัดวางเนื้อหา */
-        .container {
-            max-width: 800px;
-            margin: auto;
+
+        /* พื้นที่ของแต่ละหน้า */
+        .page {
+            display: none; /* ซ่อนทุกหน้าก่อน */
             padding: 20px;
             text-align: center;
         }
 
-        h2 {
-            color: #4CAF50;
-            margin-bottom: 10px;
-        }
-
-        label, select, button {
-            margin: 5px;
-        }
-
-        button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        #results {
-            margin-top: 20px;
-            font-weight: bold;
-            font-size: 18px;
-        }
-
-        .section {
-            padding: 20px 0;
+        /* แสดงเฉพาะหน้าที่เลือก */
+        .active {
+            display: block;
         }
     </style>
 </head>
@@ -93,90 +64,86 @@
     <h1>KHANUWITTAYA SCHOOL</h1>
 </header>
 
+<!-- เมนูนำทาง -->
 <nav>
-    <a href="#concept">Concept</a>
-    <a href="#about">About Us</a>
-    <a href="#contact">Contact</a>
+    <a href="#home" onclick="showPage('home')">Home</a>
+    <a href="#about" onclick="showPage('about')">About Us</a>
+    <a href="#calculator" onclick="showPage('calculator')">Calculator</a>
 </nav>
 
-<div class="container">
-    <section id="calculator" class="section">
-        <h2>Genetics Calculator</h2>
-        <p>เครื่องคิดเลขสำหรับคำนวณในทางชีววิทยา และข้อมูลเชิงพันธุกรรม</p>
-        
-        <label for="parent1">Parent 1 Allele:</label>
-        <select id="parent1">
-            <option value="A">A</option>
-            <option value="a">a</option>
-        </select>
+<!-- หน้าหลัก -->
+<div id="home" class="page active">
+    <h2>Welcome to Our Website!</h2>
+    <p>กดปุ่ม "About Us" เพื่อดูข้อมูลเพิ่มเติม หรือ "Calculator" เพื่อใช้เครื่องคิดเลข</p>
+</div>
 
-        <label for="parent2">Parent 1 Allele:</label>
-        <select id="parent2">
-            <option value="A">A</option>
-            <option value="a">a</option>
-        </select>
+<!-- หน้า About Us -->
+<div id="about" class="page">
+    <h2>About Us</h2>
+    <p>ข้อมูลเกี่ยวกับเรา และข้อมูลเพิ่มเติมจาก Canva</p>
+    <button onclick="openCanvaImage()">ดูภาพจาก Canva</button>
+</div>
 
-        <br><br>
+<!-- หน้า Calculator -->
+<div id="calculator" class="page">
+    <h2>Genetics Calculator</h2>
+    <p>เครื่องคิดเลขสำหรับคำนวณในทางชีววิทยา</p>
+    
+    <label for="parent1">Parent 1 Allele:</label>
+    <select id="parent1">
+        <option value="A">A</option>
+        <option value="a">a</option>
+    </select>
 
-        <label for="parent3">Parent 2 Allele:</label>
-        <select id="parent3">
-            <option value="A">A</option>
-            <option value="a">a</option>
-        </select>
+    <label for="parent2">Parent 2 Allele:</label>
+    <select id="parent2">
+        <option value="A">A</option>
+        <option value="a">a</option>
+    </select>
 
-        <label for="parent4">Parent 2 Allele:</label>
-        <select id="parent4">
-            <option value="A">A</option>
-            <option value="a">a</option>
-        </select>
+    <br><br>
 
-        <br><br>
+    <button onclick="calculateGenetics()">Calculate</button>
 
-        <button onclick="calculateGenetics()">Calculate</button>
-
-        <h3>Results:</h3>
-        <p id="results"></p>
-    </section>
-
-    <section id="about" class="section">
-        <h2>About Us</h2>
-        <p>พวกเราสร้างเว็บไซต์นี้ขึ้นมาเพื่ออำนวยความสะดวกในการคำนวณพันธุศาสตร์ เราหวังว่าจะช่วยได้ไม่มากก็น้อย</p>
-    </section>
-
-    <section id="concept" class="section">
-        <h2>Concept</h2>
-        <p>กฎข้อที่ 1 "กฎแห่งการแยกตัว" และ กฎข้อที่ 2 "กฎแห่งการรวมกลุ่มอย่างอิสระ" เป็นแนวคิดที่สำคัญในพันธุศาสตร์ที่ช่วยอธิบายการถ่ายทอดลักษณะทางพันธุกรรม</p>
-    </section>
-
-    <section id="contact" class="section">
-        <h2>Contact Us</h2>
-        <p>หากพบข้อบกพร่องหรือปัญหาในการใช้งานเว็บไซต์ สามารถแจ้งได้ทางช่องทางนี้:</p>
-        <p>Email: <a href="mailto:18080@kanu.ac.th">18080@kanu.ac.th</a></p>
-    </section>
+    <h3>Results:</h3>
+    <p id="results"></p>
 </div>
 
 <script>
-function calculateGenetics() {
-    let p1 = document.getElementById("parent1").value;
-    let p2 = document.getElementById("parent2").value;
-    let p3 = document.getElementById("parent3").value;
-    let p4 = document.getElementById("parent4").value;
+    // ฟังก์ชันเพื่อแสดงหน้าแต่ละหน้า
+    function showPage(pageId) {
+        const pages = document.querySelectorAll('.page');
+        pages.forEach(page => {
+            page.classList.remove('active');
+        });
+        document.getElementById(pageId).classList.add('active');
+    }
 
-    let possibleCombinations = [p1 + p3, p1 + p4, p2 + p3, p2 + p4];
+    // ฟังก์ชันเปิดหน้าต่างใหม่ไปยังรูปภาพจาก Canva
+    function openCanvaImage() {
+        const canvaLink = 'https://your-canva-image-link.com'; // เปลี่ยนลิงก์นี้เป็นลิงก์ Canva ของคุณ
+        window.open(canvaLink, '_blank'); // เปิดลิงก์ในแท็บใหม่
+    }
 
-    let counts = { "AA": 0, "Aa": 0, "aA": 0, "aa": 0 };
-    possibleCombinations.forEach(combination => { counts[combination]++; });
+    // ฟังก์ชันคำนวณพันธุกรรม
+    function calculateGenetics() {
+        let p1 = document.getElementById("parent1").value;
+        let p2 = document.getElementById("parent2").value;
 
-    let total = possibleCombinations.length;
-    let AA_percent = (counts["AA"] / total) * 100;
-    let Aa_percent = ((counts["Aa"] + counts["aA"]) / total) * 100;
-    let aa_percent = (counts["aa"] / total) * 100;
+        let combinations = [p1 + p2];
+        
+        let counts = { "AA": 0, "Aa": 0, "aa": 0 };
+        combinations.forEach(combination => { counts[combination] = (counts[combination] || 0) + 1; });
 
-    document.getElementById("results").innerHTML =
-        `AA: ${AA_percent.toFixed(2)}%<br>` +
-        `Aa: ${Aa_percent.toFixed(2)}%<br>` +
-        `aa: ${aa_percent.toFixed(2)}%`;
-}
+        let AA_percent = (counts["AA"] || 0) * 100;
+        let Aa_percent = (counts["Aa"] || 0) * 100;
+        let aa_percent = (counts["aa"] || 0) * 100;
+
+        document.getElementById("results").innerHTML =
+            `AA: ${AA_percent}%<br>` +
+            `Aa: ${Aa_percent}%<br>` +
+            `aa: ${aa_percent}%`;
+    }
 </script>
 
 </body>
